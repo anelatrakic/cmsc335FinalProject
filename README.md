@@ -13,3 +13,7 @@
     - https://rapidapi.com/
     - https://rapidapi.com/blog/rapidapi-featured-news-apis/
     - https://developer.vonage.com/blog/2021/03/15/the-ultimate-list-of-fun-apis-for-your-next-coding-project
+  
+## README.txt file 
+** see above file for needed info **
+
