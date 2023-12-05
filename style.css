@@ -1,1 +1,64 @@
-/* start style here */
+html {
+    background-color: #6e6762;
+    font-family: Arial;
+}
+
+#title {
+    font-size: 4em;
+    color: #ff7300;
+    font-family: 'Movie Star';
+}
+
+#explanation {
+    font-size: 1.5em;
+    color: #ff943d;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+	border-bottom: .15rem solid black;
+    box-shadow: 0 0 5px .5px black;
+}
+
+.menu {
+    width: 400px;
+    float: left;
+    height: 70px;
+}
+
+ul {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+ul li{
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27px;
+    font-size: 1.5rem;
+    border: .15rem solid #ff7300;
+    padding: .3rem;
+}
+
+ul li a{
+    text-decoration: none;
+    color: black;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover{
+    color: #ff7300;
+}
+
+#fs {
+    border: .15rem solid #ff7300;
+    padding: .3rem;
+    box-shadow: 0 0 5px .5px black;
+}
