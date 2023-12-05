@@ -1,1 +1,30 @@
+<!doctype html>
+<html lang="en">
 
+    <head>
+        <title>Search Shows</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.cdnfonts.com/css/movie-star-2" rel="stylesheet">
+    </head>
+
+    <body>
+        <h1 id = title>Search Shows</h1>
+        <h2> Search all streaming services for a show! </h2>
+        <form method="post" action= "http://localhost:4000/SearchShows">
+            <fieldset id = "fs">
+                <strong>Your Name: </strong><input type="text" name="name">
+                <br>
+                <br>
+                <strong>Your Email Address: </strong><input type="email" name="email">
+                <br>
+                <br>
+                <strong>Show Title: </strong><input type="text" name="show" required>
+                <br>
+            </fieldset>
+            <br>
+            <input type="reset">
+            <input type="submit" value="Enter" oncli> 
+        </form>
+    </body>
+</html>
