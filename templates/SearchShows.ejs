@@ -10,21 +10,35 @@
 
     <body>
         <h1 id = title>Search Shows</h1>
-        <h2> Search all streaming services for a show! </h2>
-        <form method="post" action= "http://localhost:4000/SearchShows">
-            <fieldset id = "fs">
-                <strong>Your Name: </strong><input type="text" name="name">
+        <h2 class="explanation"> Search all streaming services for a show! </h2>
+        <div class="form">
+            <form method="post" action= "http://localhost:4000/SearchShows">
+                <fieldset id = "fs">
+                    <strong>Your Name: </strong><input type="text" name="name">
+                    <br>
+                    <br>
+                    <strong>Your Email Address: </strong><input type="email" name="email">
+                    <br>
+                    <br>
+                    <strong>Show Title: </strong><input type="text" name="title" required>
+                    <br>
+                </fieldset>
                 <br>
-                <br>
-                <strong>Your Email Address: </strong><input type="email" name="email">
-                <br>
-                <br>
-                <strong>Show Title: </strong><input type="text" name="show" required>
-                <br>
-            </fieldset>
-            <br>
-            <input type="reset">
-            <input type="submit" value="Enter" oncli> 
-        </form>
+                <div class="moviesShowsButtons">
+    
+                    <input type="reset" class="clickButtons"> <br>
+                    <input type="submit" value= "See Show Details!" class="clickButtons"> <br>
+                    <input type="button" value="Back to Home Page" onclick="toHome()" class="clickButtons">
+            
+                </div>
+            </form>
+        </div>        
     </body>
+
+    <script>
+        function toHome() {
+            window.location.href = '/'; // back to main page 
+        }
+    </script>
+
 </html>
