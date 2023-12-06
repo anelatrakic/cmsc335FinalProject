@@ -6,6 +6,9 @@ const app = express();
 app.set("views", path.resolve(__dirname, "templates"));
 app.set("view engine", "ejs");
 
+// Allows CSS file use
+app.use(express.static("public"));
+
 app.get("/", (request, response) => {
     response.render("index");
 });
