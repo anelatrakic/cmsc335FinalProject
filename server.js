@@ -20,3 +20,7 @@ app.get("/SearchMovies", (request, response) => {
 app.get("/SearchShows", (request, response) => {
     response.render("SearchShows");
 });
+
+app.get("/ViewYourRecentSearches", (request, response) => {
+  response.render("DisplayYourData");
+});
