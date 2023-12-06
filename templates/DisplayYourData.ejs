@@ -9,17 +9,28 @@
     </head>
 
     <body>
-        <h1 id="title">All Your Searches</h1>
+        <h1 id ="title"> All Your Searches</h1>
+        <div class="form">
             <form method="post" action= "http://localhost:4000/DisplayYourData">
                 <fieldset id="fs">
-                    <strong>Your Name: </strong><input type="text" name="name">
+                    <strong>Your Name: </strong><input type="text" name="name" required>
                     <br>
 
                 </fieldset>
                 <br>
-                <input type="submit" value="Submit"> 
+                <div class="moviesShowsButtons">
+                    <input type="reset" class="clickButtons"> <br>
+                    <input type="submit" value= "View All Your Searches!" class="clickButtons"> <br>
+                    <input type="button" value="Back to Home Page" onclick="toHome()" class="clickButtons">
+                </div>
             </form>
-        <hr>
-        <a href="http://localhost:4000">HOME</a> 
+        </div>
     </body>
+
+    <script>
+        function toHome() {
+            window.location.href = '/'; // back to main page 
+        }
+    </script>
+
 </html>
