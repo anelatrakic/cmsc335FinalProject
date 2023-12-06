@@ -5,13 +5,33 @@
         <title>All Recent Searches</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css">
+        <title>CMSC335 Final Project</title>
+        <link href="https://fonts.cdnfonts.com/css/movie-star-2" rel="stylesheet">
     </head>
 
     <body>
-        <h1 id = title> All Recent Searches </h1>
+        <h1 id ="title"> All Searches Made</h1>
+        <h2 class="explanation">Displaying All Searches in the Database...</h2>
         <div>
-            <%- itemsTable %>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Movie or Show</th>
+                    <th>Title Searched For</th>
+                </tr>
+
+                <%- restOfTable %> 
+                
+            </table>
         </div>
-        <hr> 
+        <div class="moviesShowsButtons">
+            <input type="button" value="Back to Home Page" onclick="toHome()" class="clickButtons">
+        </div>
     </body>
+    <script>
+        function toHome() {
+            window.location.href = '/'; // back to main page 
+        }
+    </script>
 </html>
