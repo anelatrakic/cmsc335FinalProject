@@ -7,13 +7,19 @@ html {
     font-size: 4em;
     color: #ff7300;
     font-family: 'Movie Star';
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#explanation {
+.explanation {
     font-size: 1.5em;
     color: #ff943d;
     font-family: Arial;
     font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 hr {
@@ -23,17 +29,18 @@ hr {
 }
 
 .menu {
-    width: 400px;
-    float: left;
-    height: 70px;
+    width: 40%;
+    height: 20%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ul {
-    float: left;
-    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-family: Arial;
 }
 
 ul li{
@@ -41,8 +48,9 @@ ul li{
     margin-left: 62px;
     margin-top: 27px;
     font-size: 1.5rem;
-    border: .15rem solid #ff7300;
+    border: .3rem solid #ff7300;
     padding: .3rem;
+    border-radius: 10px;
 }
 
 ul li a{
@@ -61,4 +69,45 @@ ul li a:hover{
     border: .15rem solid #ff7300;
     padding: .3rem;
     box-shadow: 0 0 5px .5px black;
+}
+
+.form {
+    width: 60%; 
+    margin-left: 20%; 
+    margin-right: 20%; 
+    font-size: 1.25rem; 
+}
+
+.clickButtons {
+    border: .2rem solid #ff7300;
+    margin: 20px; 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    color: white; 
+    background-color: black;
+    border-radius: 10px;
+}
+
+.moviesShowsButtons {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+table {
+    border: .2rem solid #ff7300;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif; 
+}
+
+th, td {
+    border: .2rem solid #ff7300;
+    padding: 8px; 
+    margin: 8px; 
+}
+
+th {
+    font-weight: bold;
 }
