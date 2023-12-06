@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <title>Current Search</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.cdnfonts.com/css/movie-star-2" rel="stylesheet">
+    </head>
+
+    <body>
+        <h1 id ="title">Current Search Information</h1>
+        <h2 class="explanation">Below is the information about "<%- title %>"</h2>
+        <h4 class="explanation"><%- name %> has been entered in the database with email <%- email %></h4>
+        <table>
+            <tr>
+                <!-- based on whatever we pick from api to use -->
+                <th>placeholder</th>
+                <th>placeholder</th>
+                <th>placeholder</th>
+                <!-- .....  -->
+            </tr>
+
+            <!-- info generated from api will go here in table -->
+            
+        </table>
+        <div class="moviesShowsButtons">
+            <input type="button" value="Back to Home Page" onclick="toHome()" class="clickButtons">
+        </div>
+    </body>
+    <script>
+        function toHome() {
+            window.location.href = '/'; // back to main page 
+        }
+    </script>
+</html>
