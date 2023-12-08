@@ -12,18 +12,7 @@
         <h1 id ="title">Current Search Information</h1>
         <h2 class="explanation">Below is the information about "<%- title %>"</h2>
         <h4 class="explanation"><%- name %> has been entered in the database with email <%- email %></h4>
-        <table>
-            <tr>
-                <!-- based on whatever we pick from api to use -->
-                <th>placeholder</th>
-                <th>placeholder</th>
-                <th>placeholder</th>
-                <!-- .....  -->
-            </tr>
-
-            <!-- info generated from api will go here in table -->
-            
-        </table>
+        <%- table %>
         <div class="moviesShowsButtons">
             <input type="button" value="Back to Home Page" onclick="toHome()" class="clickButtons">
         </div>
