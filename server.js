@@ -2,10 +2,6 @@ const http = require('http');
 const fs = require('fs');
 const express = require("express");
 const app = express();
-
-
-
-
 const path = require("path");
 const bodyParser = require("body-parser");
 const portNumber = 4000;
@@ -29,14 +25,17 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
 
+
 /* needed for post */
 app.use(bodyParser.urlencoded({extended:false}));
 
 
 
 
+
 // Allows CSS file use
 app.use(express.static("public"));
+
 
 
 
@@ -52,6 +51,7 @@ app.get("/", (request, response) => {
 app.get("/SearchMovies", (request, response) => {
     response.render("SearchMovies");
 });
+
 
 
 
@@ -80,6 +80,7 @@ app.post("/SearchMovies", async (request, response) => {
     let table = generateMovieTable(infoArray);
     response.render("displayCurrentSearch", { name, email, title, table });
 });
+
 
 function generateMovieTable(infoArray) {
     let table = "<table><tr><th>Movie Title</th><th>Description</th><th>Streaming Services</th></tr>";
@@ -134,13 +135,11 @@ async function insertData(client, databaseAndCollection, d) {
 
 
 
-
 /* now doing similar process for shows */
 /* get user show info and INSERT into the database */
 app.get("/SearchShows", (request, response) => {
     response.render("SearchShows");
 });
-
 
 
 
@@ -157,8 +156,6 @@ async function postShow(formData) {
 }
 
 
-
-
 app.post("/SearchShows", async (request, response) => {
     const { name, email, title } = request.body;
     const type = "show";
@@ -168,6 +165,7 @@ app.post("/SearchShows", async (request, response) => {
     let table = generateShowTable(infoArray);
     response.render("displayCurrentSearch", { name, email, title, table });
 });
+
 
 function generateShowTable(infoArray) {
     let table = "<table><tr><th>Show Title</th><th>Description</th><th>Streaming Services</th></tr>";
@@ -215,8 +213,6 @@ function generateShowTable(infoArray) {
 
 
 
-
-
 app.get("/ViewYourRecentSearches", (request, response) => {
   response.render("DisplayYourData");
 });
@@ -239,7 +235,6 @@ app.post("/DisplayYourData", async (request, response) => {
     };
     response.render("DisplayAllData", variables);
 });
-
 
 
 
@@ -273,7 +268,6 @@ async function allEntries() {
 
 
 
-
 /* terminates if user enters stop */
 app.listen(portNumber, () => {
     console.log(`Web server started and running at http://localhost:4000`);
@@ -293,10 +287,8 @@ app.listen(portNumber, () => {
 
 
 
-
 const axios = require('axios');
 const { table, info } = require('console');
-
 
 
 
@@ -321,6 +313,28 @@ const options = {
     console.log(response.data);
     return response.data;
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
