@@ -75,11 +75,55 @@ app.post("/SearchMovies", async (request, response) => {
     const { name, email, title } = request.body;
     const type = "Movie";
     postMovie({ name, email, title, type }).catch(console.error);
-    const data = await getMovieInfo(title).catch(console.error);
+    const data = await getInfo(title).catch(console.error);
     const infoArray = data.result;
     let table = generateMovieTable(infoArray);
     response.render("displayCurrentSearch", { name, email, title, table });
 });
+
+function generateMovieTable(infoArray) {
+    let table = "<table><tr><th>Movie Title</th><th>Description</th><th>Streaming Services</th></tr>";
+    for(i = 0; i < infoArray.length; i++) {
+        if(infoArray[i].type == "movie") {
+                table += `<tr><td>${infoArray[i].title}</td>`;
+                const genreArray = infoArray[i].genres;
+                let genreString = genreArray[0].name;
+                for(j = 1; j < genreArray.length; j++) {
+                    genreString += ", " + genreArray[j].name;
+                }
+                const directorArray = infoArray[i].directors;
+                let directorString = directorArray[0];
+                for(j = 1; j < directorArray.length; j++) {
+                    directorString += ", " + directorArray[j];
+                }
+                if(directorArray.length == 1) {
+                    table += `<td>Genres: ${genreString}<br>Director: ${directorString}</td>`;
+                }else{
+                    table += `<td>Genres: ${genreString}<br>Directors: ${directorString}</td>`;
+                }
+                const serviceArray = infoArray[i].streamingInfo.us;
+                let serviceString = "";
+                let serviceMap = {};
+                if(serviceArray == undefined) {
+                    serviceString = "Not available";
+                } else {
+                    for(j = 0; j < serviceArray.length; j++) {
+                        if(serviceMap[serviceArray[j].service] == true) {
+                            continue;
+                        }else{
+                        currentService = serviceArray[j];
+                        serviceLink = (currentService.service.charAt(0).toUpperCase() + currentService.service.slice(1));
+                        serviceString += `<a href="${currentService.link}">${serviceLink}</a><br>`
+                        serviceMap[currentService.service] = true;
+                        }
+                    }
+                }
+                table += `<td>${serviceString}</td>`;
+        }
+    }
+    table += "</table>";
+    return table;
+}
 
 
 
@@ -117,30 +161,33 @@ async function postShow(formData) {
 
 app.post("/SearchShows", async (request, response) => {
     const { name, email, title } = request.body;
-    const type = "Show";
-    postShow({ name, email, title, type }).catch(console.error);
-    response.render("displayCurrentSearch", { name, email, title, table});
+    const type = "show";
+    postMovie({ name, email, title, type }).catch(console.error);
+    const data = await getInfo(title).catch(console.error);
+    const infoArray = data.result;
+    let table = generateShowTable(infoArray);
+    response.render("displayCurrentSearch", { name, email, title, table });
 });
 
-
-
-
-function generateMovieTable(infoArray) {
-    let table = "<table><tr><th>Movie Title</th><th>Description</th><th>Streaming Services</th></tr>";
-    for(i = 0; i < 10; i++) {
-        if(infoArray[i].type == "movie") {
+function generateShowTable(infoArray) {
+    let table = "<table><tr><th>Show Title</th><th>Description</th><th>Streaming Services</th></tr>";
+    for(i = 0; i < infoArray.length; i++) {
+        if(infoArray[i].type == "series") {
                 table += `<tr><td>${infoArray[i].title}</td>`;
                 const genreArray = infoArray[i].genres;
                 let genreString = genreArray[0].name;
                 for(j = 1; j < genreArray.length; j++) {
                     genreString += ", " + genreArray[j].name;
                 }
-                const directorArray = infoArray[i].directors;
-                let directorString = directorArray[0];
-                for(j = 1; j < directorArray.length; j++) {
-                    directorString += ", " + directorArray[j];
+                const creatorArray = infoArray[i].creators;
+                let creatorString = creatorArray[0];
+                for(j = 1; j < creatorArray.length; j++) {
+                    creatorString += ", " + creatorString[j];
                 }
-                table += `<td>Genres: ${genreString}<br>Directors: ${directorString}</td>`;
+                const seasonCount = infoArray[i].seasonCount;
+                const episodeCount = infoArray[i].episodeCount;
+                table += `<td>Genres: ${genreString}<br>Creators: ${creatorString}
+                <br>Seasons: ${seasonCount}<br>Episodes: ${episodeCount}</td>`;
                 const serviceArray = infoArray[i].streamingInfo.us;
                 let serviceString = "";
                 let serviceMap = {};
@@ -152,7 +199,8 @@ function generateMovieTable(infoArray) {
                             continue;
                         }else{
                         currentService = serviceArray[j];
-                        serviceString += `${currentService.service}: <a href="${currentService.link}">${currentService.link}</a><br>`
+                        serviceLink = (currentService.service.charAt(0).toUpperCase() + currentService.service.slice(1));
+                        serviceString += `<a href="${currentService.link}">${serviceLink}</a><br>`
                         serviceMap[currentService.service] = true;
                         }
                     }
@@ -163,6 +211,8 @@ function generateMovieTable(infoArray) {
     table += "</table>";
     return table;
 }
+
+
 
 
 
@@ -245,7 +295,7 @@ app.listen(portNumber, () => {
 
 
 const axios = require('axios');
-const { table } = require('console');
+const { table, info } = require('console');
 
 
 
@@ -265,7 +315,7 @@ const options = {
     }
   };
  
- async function getMovieInfo(title) {
+ async function getInfo(title) {
     options.params.title = title;
     const response = await axios.request(options);
     console.log(response.data);
