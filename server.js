@@ -169,42 +169,49 @@ app.post("/SearchShows", async (request, response) => {
 
 function generateShowTable(infoArray) {
     let table = "<table><tr><th>Show Title</th><th>Description</th><th>Streaming Services</th></tr>";
-    for(i = 0; i < infoArray.length; i++) {
-        if(infoArray[i].type == "series") {
-                table += `<tr><td>${infoArray[i].title}</td>`;
-                const genreArray = infoArray[i].genres;
-                let genreString = genreArray[0].name;
-                for(j = 1; j < genreArray.length; j++) {
-                    genreString += ", " + genreArray[j].name;
-                }
-                const creatorArray = infoArray[i].creators;
-                let creatorString = creatorArray[0];
-                for(j = 1; j < creatorArray.length; j++) {
-                    creatorString += ", " + creatorString[j];
-                }
-                const seasonCount = infoArray[i].seasonCount;
-                const episodeCount = infoArray[i].episodeCount;
-                table += `<td>Genres: ${genreString}<br>Creators: ${creatorString}
-                <br>Seasons: ${seasonCount}<br>Episodes: ${episodeCount}</td>`;
-                const serviceArray = infoArray[i].streamingInfo.us;
-                let serviceString = "";
-                let serviceMap = {};
-                if(serviceArray == undefined) {
-                    serviceString = "Not available";
-                } else {
-                    for(j = 0; j < serviceArray.length; j++) {
-                        if(serviceMap[serviceArray[j].service] == true) {
-                            continue;
-                        }else{
-                        currentService = serviceArray[j];
-                        serviceLink = (currentService.service.charAt(0).toUpperCase() + currentService.service.slice(1));
-                        serviceString += `<a href="${currentService.link}">${serviceLink}</a><br>`
-                        serviceMap[currentService.service] = true;
+    try {
+
+        for(i = 0; i < infoArray.length; i++) {
+            if(infoArray[i].type == "movie") {
+                    table += `<tr><td>${infoArray[i].title}</td>`;
+                    const genreArray = infoArray[i].genres;
+                    let genreString = genreArray[0].name;
+                    for(j = 1; j < genreArray.length; j++) {
+                        genreString += ", " + genreArray[j].name;
+                    }
+                    const directorArray = infoArray[i].directors;
+                    let directorString = directorArray[0];
+                    for(j = 1; j < directorArray.length; j++) {
+                        directorString += ", " + directorArray[j];
+                    }
+                    if(directorArray.length == 1) {
+                        table += `<td>Genres: ${genreString}<br>Director: ${directorString}</td>`;
+                    }else{
+                        table += `<td>Genres: ${genreString}<br>Directors: ${directorString}</td>`;
+                    }
+                    const serviceArray = infoArray[i].streamingInfo.us;
+                    let serviceString = "";
+                    let serviceMap = {};
+                    if(serviceArray == undefined) {
+                        serviceString = "Not available";
+                    } else {
+                        for(j = 0; j < serviceArray.length; j++) {
+                            if(serviceMap[serviceArray[j].service] == true) {
+                                continue;
+                            }else{
+                            currentService = serviceArray[j];
+                            serviceLink = (currentService.service.charAt(0).toUpperCase() + currentService.service.slice(1));
+                            serviceString += `<a href="${currentService.link}">${serviceLink}</a><br>`
+                            serviceMap[currentService.service] = true;
+                            }
                         }
                     }
-                }
-                table += `<td>${serviceString}</td>`;
+                    table += `<td>${serviceString}</td>`;
+            }
         }
+
+    } catch(e) {
+        
     }
     table += "</table>";
     return table;
