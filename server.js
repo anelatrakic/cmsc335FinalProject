@@ -240,7 +240,7 @@ app.post("/DisplayYourData", async (request, response) => {
     const variables = {
         restOfTable: s
     };
-    response.render("DisplayAllData", variables);
+    response.render("displayAllData", variables);
 });
 
 
@@ -252,7 +252,7 @@ app.get("/displayAllData", async (request, response) => {
         restOfTable += `<tr><td>${entry.name}</td><td>${entry.email}</td>`;
         restOfTable += `<td>${entry.type}</td><td>${entry.title}</td></tr>`;
     });
-    response.render("DisplayAllData", { restOfTable } );
+    response.render("displayAllData", { restOfTable } );
   });
 
 
